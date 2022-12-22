@@ -4,6 +4,9 @@ Table list
   > id(pk),
   > value,
   > key
+  
+  Required CRUD function
+  - C, R, U, D
 
 [ User_table ]
   > user_id(pk),
@@ -11,6 +14,9 @@ Table list
   > password,
   > registered_date,
   > validation
+  
+  Required CRUD function
+  - C, R, U
 
 [ Quiz_table ]
   > quiz_id(pk),
@@ -18,6 +24,9 @@ Table list
   > count_of_visitor,
   > published(0 or 1) boolean,
   > user_id(fk)
+  
+  Required CRUD function
+  - C, R, U, D
 
 [ Question_table ]
   > id(pk),
@@ -25,12 +34,18 @@ Table list
   > possible_answers,
   > correct_answers,
   > quiz_id(fk)m
+  
+  Required CRUD function
+  - C, R, U, D
 
 [ Solution_table ]
   > id(pk),
   > text,
   > quiz_id(fk),
   > user_id(fk)
+  
+  Required CRUD function
+  - C, R
 
 [ solved_quiz ]
   > id(pk),
@@ -40,3 +55,6 @@ Table list
   > question10_score,
   > quiz_id(fk),
   > solved_user_id(fk)
+  
+  Required CRUD function
+  - C, R
