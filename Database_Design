@@ -1,0 +1,42 @@
+Table list
+
+[ Token_table ]
+  > id(pk),
+  > value,
+  > key
+
+[ User_table ]
+  > user_id(pk),
+  > e-mail,
+  > password,
+  > registered_date,
+  > validation
+
+[ Quiz_table ]
+  > quiz_id(pk),
+  > title,
+  > count_of_visitor,
+  > published(0 or 1) boolean,
+  > user_id(fk)
+
+[ Question_table ]
+  > id(pk),
+  > question_text,
+  > possible_answers,
+  > correct_answers,
+  > quiz_id(fk)m
+
+[ Solution_table ]
+  > id(pk),
+  > text,
+  > quiz_id(fk),
+  > user_id(fk)
+
+[ solved_quiz ]
+  > id(pk),
+  > question1_score,
+  > question2_score,
+  > ...
+  > question10_score,
+  > quiz_id(fk),
+  > solved_user_id(fk)
