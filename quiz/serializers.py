@@ -1,6 +1,6 @@
 from rest_framework import serializers
+from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import User, Quiz, Question, Solution, Solved_quiz
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -20,14 +20,22 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         
         return data
 
-class MyTokenObtainPairView(TokenObtainPairView):
-    serializer_class = MyTokenObtainPairSerializer
-
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only = True)
     email = serializers.EmailField(required = True, allow_blank = False, max_length = 128)
-    password = serializers.CharField(required = True, write_only = True, style = {'input_type': 'password'})
+    password = serializers.CharField(write_only = True, style = {'input_type': 'password'})
     validation = serializers.BooleanField(required = False)
     class Meta:
         model = User
-        fields = ['id', 'email', 'password', 'registered_date', 'validation']    
+        fields = ['id', 'email', 'password', 'registered_date', 'validation']
+    
+    # if user exist, raise error message
+    def validate(self, data):
+        email = data.get('email', None)
+        
+        if User.objects.filter(email = email).exists():
+            raise serializers.ValidationError("user already exsits")
+        
+        return data
+    
+    # should make delete user + user's token
