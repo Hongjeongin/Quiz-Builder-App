@@ -1,7 +1,7 @@
 from django.db import models
 
 class User(models.Model):
-    email = models.EmailField(max_length = 128, verbose_name = 'E-mail')
+    email = models.EmailField(max_length = 128, unique = True, verbose_name = 'E-mail')
     password = models.CharField(max_length = 50, verbose_name = 'Password')
     registered_date = models.DateTimeField(auto_now_add = True, verbose_name = 'Registered_Date')
     validation = models.BooleanField(default = False, verbose_name = 'Validation')

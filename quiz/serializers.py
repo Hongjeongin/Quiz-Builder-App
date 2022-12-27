@@ -37,5 +37,3 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             raise serializers.ValidationError("user already exsits")
         
         return data
-    
-    # should make delete user + user's token
