@@ -1,9 +1,13 @@
+import sys
 from django.shortcuts import render, get_object_or_404
 
+import jwt
+from .serializers import *
 from rest_framework.views import APIView
 from rest_framework import viewsets, renderers, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import User
 from .serializers import MyTokenObtainPairSerializer, UserSerializer
@@ -11,8 +15,12 @@ from .serializers import MyTokenObtainPairSerializer, UserSerializer
 def find_user(email):
     return User.objects.filter(email = email)
 
+
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+    
+    # def post(self, request):
     
     # required for set_token to user's cookie
     #

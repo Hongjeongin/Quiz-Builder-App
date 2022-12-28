@@ -1,17 +1,16 @@
 from rest_framework import serializers
 from rest_framework.response import Response
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenVerifySerializer
 from .models import User, Quiz, Question, Solution, Solved_quiz
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
-        token = super().get_token(user)  
+        token = super().get_token(user)
         return token
     
     def validate(self, attrs):
         data = super(MyTokenObtainPairSerializer, self).validate(attrs)
-        
         refresh = self.get_token(self.user)
         
         data['refresh'] = str(refresh)
@@ -19,6 +18,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['success'] = True
         
         return data
+    
+class MyTokenVerifySerializer(TokenVerifySerializer):
+    
+    pass
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only = True)
