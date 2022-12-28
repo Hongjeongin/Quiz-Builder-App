@@ -46,3 +46,7 @@ class Solved_quiz(models.Model):
     question9_score = models.FloatField(default = 0, verbose_name = 'Score10')
     quiz_id = models.ForeignKey('Quiz', on_delete = models.CASCADE, verbose_name = 'Quiz_id')
     solved_user = models.ForeignKey('User', on_delete = models.CASCADE, verbose_name = 'Solved_user')
+    
+class Refresh_token(models.Model):
+    index = models.AutoField(primary_key = True, verbose_name = 'index')
+    value = models.CharField(max_length = 500, verbose_name ='value')
