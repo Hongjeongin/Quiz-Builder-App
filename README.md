@@ -10,7 +10,7 @@
 - Django version(latest) - 4.1.4
 - Django Rest Framework version(latest) - 3.14.0
 - Database: PostgreSQL version - 15.1   
-ㄴ Using Louie’s docker container
+ㄴ Using docker container
 
 ### Doing history
 > 
