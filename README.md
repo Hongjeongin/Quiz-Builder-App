@@ -4,7 +4,7 @@
 - This is Quiz_builder_app.   
 - User can make their quiz.   
 - User can solve another user's quiz. and they can write solution like review for that quiz.   
-- If user access to this app, they are issued token(access, refresh) with cookie.
+- If user access to this app, they get token(access, refresh) with cookie.
 
 ### Settings
 - Django version(latest) - 4.1.4
